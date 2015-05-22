@@ -23,7 +23,16 @@
 /*.animate-view.ng-leave { opacity:1; }*/
 /*.animate-view.ng-leave.ng-leave-active { opacity:0; }*/
 
-body, html { position:relative; min-height:100%; }
+
+
+/*body, html { position:relative; min-height:100%; }*/
+body, html {
+    margin:0;
+    padding:0;
+    position:relative;
+    height:100%;
+}
+
 .loading {
     position:relative;
     height:100%;
