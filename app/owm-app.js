@@ -254,7 +254,9 @@
 //    });
 
 
-angular.module('OWMApp', ['ngRoute'])
+//angular.module('OWMApp', ['ngRoute'])
+//in your owm-app.js file
+angular.module('OWMApp', ['ngRoute', 'ngAnimate'])
     .value('owmCities', ['New York', 'Dallas', 'Chicago'])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/', {
@@ -280,6 +282,19 @@ angular.module('OWMApp', ['ngRoute'])
                 template : '<p>Error - Page Not Found</p>'
             })
     }])
+    .run(function($rootScope, $location, $timeout) {
+        $rootScope.$on('$routeChangeError', function() {
+            $location.path("/error");
+        });
+        $rootScope.$on('$routeChangeStart', function() {
+            $rootScope.isLoading = true;
+        });
+        $rootScope.$on('$routeChangeSuccess', function() {
+            $timeout(function() {
+                $rootScope.isLoading = false;
+            }, 1000);
+        });
+    })
     .controller('HomeCtrl', ['$scope', function($scope) {
         //empty for now
     }])
